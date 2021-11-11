@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Text.RegularExpressions;
 namespace Converter
 {
     class Program
@@ -7,7 +7,20 @@ namespace Converter
         static void Main(string[] args)
         {
             Console.Write("Enter a binary number: ");
-            string binary = Console.ReadLine();
+            string binary = "";
+            
+            while (binary == "")
+            {
+                binary = Console.ReadLine();
+                string pattern = "[0-1]+$" ;
+                if (Regex.IsMatch(binary, pattern) == false)
+                {
+                    Console.Write("Please enter a valid binary number: ");
+                    binary = "";
+                }
+            }
+            
+            
             int start = 1;
             int decimalnumber = 0;
             for (int i = binary.Length-1; i >= 0; i--)
@@ -23,7 +36,7 @@ namespace Converter
             string hex = "";
             int temp = 0;
             int pos = binary.Length - 1;
-            while (pos>0)
+            while (pos>=0)
             {
                 for (int i = 0; i < 4; i++)
                 {
